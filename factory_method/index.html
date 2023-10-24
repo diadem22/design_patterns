@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Factory Method Pattern Example</title>
+</head>
+
+<body>
+    <script>
+        class Product {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+
+            describe() {
+                return `Product: ${this.name}, Price: $${this.price}`;
+            }
+}
+
+            class ConcreteProductA extends Product {
+                constructor(name, price) {
+                    super(name, price);
+                    this.type = "Type A";
+                }
+            }
+
+            class ConcreteProductB extends Product {
+                constructor(name, price) {
+                    super(name, price);
+                    this.type = "Type B";
+                }
+            }
+
+            class ProductFactory {
+                createProduct(name, price, type) {
+                    switch (type) {
+                        case "A":
+                            return new ConcreteProductA(name, price);
+                        case "B":
+                            return new ConcreteProductB(name, price);
+                        default:
+                            throw new Error("Invalid product type");
+                    }
+                }
+            }
+
+        const factory = new ProductFactory();
+
+        const product1 = factory.createProduct("Product 1", 10, "C");
+        const product2 = factory.createProduct("Product 2", 20, "B");
+
+        console.log(product1.describe());
+        console.log(product2.describe());
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Factory Method Pattern Example</title>
+</head>
+
+<body>
+    <script>
+            class AbstractFactory {
+                createProductA() {
+                    console.log('A')
+                }
+
+                createProductB() {
+                    console.log('B')
+                }
+            }
+
+            class ConcreteFactoryA extends AbstractFactory {
+                createProductA() {
+                    return new ConcreteProductA1();
+                }
+
+                createProductB() {
+                    return new ConcreteProductA2();
+                }
+            }
+
+            class ConcreteFactoryB extends AbstractFactory {
+                createProductA() {
+                    return new ConcreteProductB1();
+                }
+
+                createProductB() {
+                    return new ConcreteProductB2();
+                }
+            }
+
+            class AbstractProduct1 {
+                operationA() {
+                    console.log('operationA')
+                }
+            }
+            class ConcreteProductA1 extends AbstractProduct1 {
+                operationA() {
+                    return "Product A1 operation";
+                }
+            }
+
+            class ConcreteProductB1 extends AbstractProduct1 {
+                operationA() {
+                    return "Product A2 operation";
+                }
+            }
+
+            class AbstractProduct2 {
+                operationB() {
+                    console.log('operationB')
+                }
+            }
+            class ConcreteProductA2 extends AbstractProduct2 {
+                operationB() {
+                    return "Product B1 operation";
+                }
+            }
+
+            class ConcreteProductB2 extends AbstractProduct2 {
+                operationB() {
+                    return "Product B2 operation";
+                }
+            }
+
+            function clientCode(factory) {
+                const productA = factory.createProductA();
+                const productB = factory.createProductB();
+
+                console.log(productA.operationA());
+                console.log(productB.operationB());
+            }
+
+            console.log("Client: Using Concrete Factory 1");
+            const factory1 = new ConcreteFactory1();
+            clientCode(factory1);
+
+            console.log("\nClient: Using Concrete Factory 2");
+            const factory2 = new ConcreteFactory2();
+            clientCode(factory2);
+
+    </script>
+</body>
+
+</html>
